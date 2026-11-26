@@ -1,0 +1,5 @@
+# Yalnızca yerel çalıştırma için: sunumu http://localhost:${PORT:-8080} adresine açar.
+services:
+  sunum:
+    ports:
+      - "${PORT:-8080}:80"

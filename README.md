@@ -2,10 +2,14 @@
 
 "The Last Boring Slide" sunumunun Türkçe sürümü. Tek bir HTML dosyasıdır (WebGL 2, gömülü fontlar ve görseller) ve nginx ile sunulur.
 
-## Çalıştırma
+## Dokploy
+
+Compose olarak ekleyin, domain ayarında **Container Port: 80** girin. Sunucuda port açılmaz; trafik Dokploy üzerinden gelir.
+
+## Yerelde çalıştırma
 
 ```bash
-docker compose up -d
+docker compose -f docker-compose.yml -f compose.local.yml up -d
 ```
 
 Sunum: http://localhost:8080
@@ -13,13 +17,13 @@ Sunum: http://localhost:8080
 Farklı port için:
 
 ```bash
-PORT=9000 docker compose up -d
+PORT=9000 docker compose -f docker-compose.yml -f compose.local.yml up -d
 ```
 
 Durdurmak için:
 
 ```bash
-docker compose down
+docker compose -f docker-compose.yml -f compose.local.yml down
 ```
 
 ## Kısayollar
@@ -40,4 +44,5 @@ docker compose down
 
 - `site/index.html`: sunum
 - `nginx/default.conf`: gzip açık nginx ayarı
-- `docker-compose.yml`: `nginx:1.27-alpine` servisi
+- `docker-compose.yml`: `nginx:1.27-alpine` servisi (port açmaz)
+- `compose.local.yml`: yerelde 8080 portunu açan ek dosya
